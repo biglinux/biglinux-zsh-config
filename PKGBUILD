@@ -2,14 +2,13 @@
 # Developer: pheiduck @forum.biglinux.org
 
 pkgname=biglinux-zsh-config
-pkgver=0.20
-pkgrel=3
+pkgver=$(date +%y.%m.%d)
+pkgrel=$(date +%H%M)
 pkgdesc="Zsh configuration for biglinux"
 arch=(any)
-url="https://github.com/Chrysostomus/$pkgname"
-_gitcommit=e19c7c5e902a3085f918fb1fc6d0c1fd43c559c8
+url="https://github.com/biglinux/biglinux-zsh-config/$pkgname"
 license=('MIT')
-conflicts=('grml-zsh-config')
+conflicts=('grml-zsh-config' 'manjaro-zsh-config')
 depends=('zsh-autosuggestions'
 	'zsh-syntax-highlighting'
 	'zsh-completions'
@@ -18,22 +17,22 @@ depends=('zsh-autosuggestions'
 	'pkgfile'
 	'ttf-meslo-nerd-font-powerlevel10k'
 	'zsh-theme-powerlevel10k')
-source=("$pkgname.tar.gz::$url/archive/$_gitcommit.tar.gz")
+source=("git+${url}.git") 
 install=biglinux-zsh-config.install
-sha256sums=('c0818e1a95a5462e5f0b17b1455ccb009c40dd78acd285149a983df2c1b4a377')
+sha256sums=('SKIP')
 backup=(root/.zshrc)
 
 package() {
 	cd ${srcdir}
-	install -D -m644 $srcdir/$pkgname-$_gitcommit/.zshrc ${pkgdir}/etc/skel/.zshrc
-	install -D -m644 $srcdir/$pkgname-$_gitcommit/biglinux-zsh-config ${pkgdir}/usr/share/zsh/biglinux-zsh-config
-	install -D -m644 $srcdir/$pkgname-$_gitcommit/biglinux-zsh-prompt ${pkgdir}/usr/share/zsh/biglinux-zsh-prompt
-	install -D -m644 $srcdir/$pkgname-$_gitcommit/zsh-maia-prompt ${pkgdir}/usr/share/zsh/zsh-maia-prompt
-	install -D -m644 $srcdir/$pkgname-$_gitcommit/p10k.zsh ${pkgdir}/usr/share/zsh/p10k.zsh
-	install -D -m644 $srcdir/$pkgname-$_gitcommit/command-not-found.zsh ${pkgdir}/usr/share/zsh/functions/command-not-found.zsh
-	install -D -m640 $srcdir/$pkgname-$_gitcommit/rootzshrc ${pkgdir}/root/.zshrc
+	install -D -m644 $srcdir/$pkgname/.zshrc ${pkgdir}/etc/skel/.zshrc
+	install -D -m644 $srcdir/$pkgname/biglinux-zsh-config ${pkgdir}/usr/share/zsh/biglinux-zsh-config
+	install -D -m644 $srcdir/$pkgname/biglinux-zsh-prompt ${pkgdir}/usr/share/zsh/biglinux-zsh-prompt
+	install -D -m644 $srcdir/$pkgname/zsh-maia-prompt ${pkgdir}/usr/share/zsh/zsh-maia-prompt
+	install -D -m644 $srcdir/$pkgname/p10k.zsh ${pkgdir}/usr/share/zsh/p10k.zsh
+	install -D -m644 $srcdir/$pkgname/command-not-found.zsh ${pkgdir}/usr/share/zsh/functions/command-not-found.zsh
+	install -D -m640 $srcdir/$pkgname/rootzshrc ${pkgdir}/root/.zshrc
 	chmod 750 ${pkgdir}/root
 	mkdir -p $pkgdir/usr/share/zsh/scripts
-	cp -r $srcdir/$pkgname-$_gitcommit/base16-shell $pkgdir/usr/share/zsh/scripts
+	cp -r $srcdir/$pkgname/base16-shell $pkgdir/usr/share/zsh/scripts
 	chmod a+x $pkgdir/usr/share/zsh/scripts/base16-shell/*
 }
