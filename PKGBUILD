@@ -25,6 +25,7 @@ backup=(root/.zshrc)
 package() {
 	cd ${srcdir}
 	install -D -m644 $srcdir/$pkgname/.zshrc ${pkgdir}/etc/skel/.zshrc
+	install -D -m644 $srcdir/$pkgname/MesloLGSBiglinux-Regular.ttf ${pkgdir}/usr/share/fonts/TTF/
 	install -D -m644 $srcdir/$pkgname/biglinux-zsh-config ${pkgdir}/usr/share/zsh/biglinux-zsh-config
 	install -D -m644 $srcdir/$pkgname/biglinux-zsh-prompt ${pkgdir}/usr/share/zsh/biglinux-zsh-prompt
 	install -D -m644 $srcdir/$pkgname/zsh-maia-prompt ${pkgdir}/usr/share/zsh/zsh-maia-prompt
