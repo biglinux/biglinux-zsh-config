@@ -2,8 +2,8 @@
 # Tabela de cores: https://misc.flogisoft.com/_media/bash/colors_format/256_colors_fg.png
 
 # Cores degrade
-RED001='\e[38;5;1m'		# Vermelho 1
-RED009='\e[38;5;9m'		# Vermelho 9
+RED001='\e[38;5;1m'		    # Vermelho 1
+RED009='\e[38;5;9m'		    # Vermelho 9
 CYA122='\e[38;5;122m'		# Ciano 122
 CYA044='\e[38;5;44m'		# Ciano 44
 ROX063='\e[38;5;63m'		# Roxo 63
@@ -27,19 +27,19 @@ ROS='\e[35;1m'			# Rosa
 CYA='\e[36;1m'			# Ciano
 NEG='\e[37;1m'			# Negrito
 CUI='\e[40;31;5m'		# Vermelho pisacando, aviso!
-STD='\e[m'			# Fechamento de cor
+STD='\e[m'			    # Fechamento de cor
 
 command_not_found_handler() {
   local pkgs cmd="$1"
 
   pkgs=(${(f)"$(pkgfile -b -v -- "$cmd" 2>/dev/null)"})
   if [[ -n "$pkgs" ]]; then
-    printf "${BLU}The application %s is not installed. It may be found in the following packages:${STD}\n" "$cmd"
-    printf "  ${ROS}%s${STD}\n" $pkgs[@]
+    printf "${BLU}*${STD} ${YEL}The application${STD} ${GRE}%s${STD} ${YEL}is not installed. It may be found in the following packages:${STD}\n" "$cmd"
+    printf "${GRE}*${STD} ${NEG}%s${STD}\n" $pkgs[@]
     setopt shwordsplit
     pkg_array=($pkgs[@])
     pkgname="${${(@s:/:)pkg_array}[2]}"
-    printf "${LAR208}Do you want to Install package${STD} ${ROS}%s${STD}? (${GRE}Y${STD}es/${RED001}N${STD}o) " $pkgname
+    printf "${BLU}*${STD} ${NEG}Do you want to Install package${STD} ${GRE}%s${STD}? (${GRE}Y${STD}es/${RED001}N${STD}o) " $pkgname
     if read -q "choice? "; then
     		echo
     		echo "Executing command: pamac install $pkgname"
