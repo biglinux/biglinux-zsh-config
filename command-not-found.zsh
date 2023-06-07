@@ -1,3 +1,4 @@
+#!/bin/bash
 # Definição de Cores
 # Tabela de cores: https://misc.flogisoft.com/_media/bash/colors_format/256_colors_fg.png
 
@@ -34,21 +35,21 @@ command_not_found_handler() {
 
   pkgs=(${(f)"$(pkgfile -b -v -- "$cmd" 2>/dev/null)"})
   if [[ -n "$pkgs" ]]; then
-    printf "${BLU}*${STD} ${YEL}The application${STD} ${GRE}%s${STD} ${YEL}is not installed. It may be found in the following packages:${STD}\n" "$cmd"
+    printf $"${BLU}*${STD} ${YEL}The application${STD} ${GRE}%s${STD} ${YEL}is not installed. It may be found in the following packages:${STD}\n" "$cmd"
     printf "${GRE}*${STD} ${NEG}%s${STD}\n" $pkgs[@]
     setopt shwordsplit
     pkg_array=($pkgs[@])
     pkgname="${${(@s:/:)pkg_array}[2]}"
-    printf "${BLU}*${STD} ${NEG}Do you want to Install package${STD} ${GRE}%s${STD}? (${GRE}Y${STD}es/${RED001}N${STD}o) " $pkgname
+    printf $"${BLU}*${STD} ${NEG}Do you want to Install package${STD} ${GRE}%s${STD}? (${GRE}Y${STD}es/${RED001}N${STD}o) " $pkgname
     if read -q "choice? "; then
     		echo
-    		echo "Executing command: pamac install $pkgname"
+    		echo $"Executing command: pamac install $pkgname"
             pamac install $pkgname
     else
     		echo " "
     fi
   else
-    printf "${NEG}Command not found:${STD} ${CYA}%s${STD}\n" "$cmd"
+    printf $"${NEG}Command not found:${STD} ${CYA}%s${STD}\n" "$cmd"
   fi 1>&2
 
   return 127
