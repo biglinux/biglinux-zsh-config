@@ -31,16 +31,22 @@ CUI='\e[40;31;5m'		# Vermelho pisacando, aviso!
 STD='\e[m'			    # Fechamento de cor
 
 command_not_found_handler() {
+# Textos #
+TXT01=$"The application"
+TXT02=$"is not installed. It may be found in the following packages:"
+TXT10=$"Do you want to Install package"
+TXT20=$"Command not found:"
+
   local pkgs cmd="$1"
 
   pkgs=(${(f)"$(pkgfile -b -v -- "$cmd" 2>/dev/null)"})
   if [[ -n "$pkgs" ]]; then
-    printf $"${BLU}*${STD} ${YEL}The application${STD} ${GRE}%s${STD} ${YEL}is not installed. It may be found in the following packages:${STD}\n" "$cmd"
+    printf "${BLU}*${STD} ${YEL}"%s" $TXT01${STD} ${GRE}%s${STD} ${YEL}"%s" $TXT02${STD}\n" "$cmd"
     printf "${GRE}*${STD} ${NEG}%s${STD}\n" $pkgs[@]
     setopt shwordsplit
     pkg_array=($pkgs[@])
     pkgname="${${(@s:/:)pkg_array}[2]}"
-    printf $"${BLU}*${STD} ${NEG}Do you want to Install package${STD} ${GRE}%s${STD}? (${GRE}Y${STD}es/${RED001}N${STD}o) " $pkgname
+    printf "${BLU}*${STD} ${NEG}$TXT10${STD} ${GRE}%s${STD}? (${GRE}Y${STD}es/${RED001}N${STD}o)" $pkgname
     if read -q "choice? "; then
     		echo
     		echo $"Executing command: pamac install $pkgname"
@@ -49,7 +55,7 @@ command_not_found_handler() {
     		echo " "
     fi
   else
-    printf $"${NEG}Command not found:${STD} ${CYA}%s${STD}\n" "$cmd"
+    printf "${NEG}$TXT20${STD} ${CYA}%s${STD}\n" "$cmd"
   fi 1>&2
 
   return 127
