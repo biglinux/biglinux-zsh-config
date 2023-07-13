@@ -8,3 +8,7 @@ fi
 if [[ -e /usr/share/zsh/biglinux-zsh-prompt ]]; then
   source /usr/share/zsh/biglinux-zsh-prompt
 fi
+# User aliases
+if [[ -e ~/.bash_aliases ]]; then
+  source ~/.bash_aliases
+fi
