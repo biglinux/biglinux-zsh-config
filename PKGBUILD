@@ -30,6 +30,7 @@ package() {
 	install -D -m644 $srcdir/$pkgname/biglinux-zsh-prompt ${pkgdir}/usr/share/zsh/biglinux-zsh-prompt
 	install -D -m644 $srcdir/$pkgname/zsh-maia-prompt ${pkgdir}/usr/share/zsh/zsh-maia-prompt
 	install -D -m644 $srcdir/$pkgname/p10k.zsh ${pkgdir}/usr/share/zsh/p10k.zsh
+	install -D -m644 $srcdir/$pkgname/p10k-portable.zsh ${pkgdir}/usr/share/zsh/p10k-portable.zsh
 	install -D -m644 $srcdir/$pkgname/command-not-found.zsh ${pkgdir}/usr/share/zsh/functions/command-not-found.zsh
 	install -D -m640 $srcdir/$pkgname/rootzshrc ${pkgdir}/root/.zshrc
 	chmod 750 ${pkgdir}/root
