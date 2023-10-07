@@ -187,8 +187,8 @@
   # OS identifier color.
   typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=254
   typeset -g POWERLEVEL9K_OS_ICON_BACKGROUND=24
-  # Custom icon.
-  typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION=' ' 
+  # Custom icon Biglinux
+  typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION=' ' 
 
   ################################[ prompt_char: prompt symbol ]################################
   # Transparent background.

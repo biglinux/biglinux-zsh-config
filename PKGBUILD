@@ -15,7 +15,7 @@ depends=('zsh-autosuggestions'
 	'zsh-history-substring-search'
 	'zsh'
 	'pkgfile'
-	'ttf-meslo-nerd-font-powerlevel10k'
+	'ttf-nerd-fonts-symbols-with-biglinux'
 	'zsh-theme-powerlevel10k')
 source=("git+${url}.git") 
 install=biglinux-zsh-config.install
