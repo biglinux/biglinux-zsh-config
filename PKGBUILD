@@ -15,6 +15,7 @@ depends=('zsh-autosuggestions'
 	'zsh-history-substring-search'
 	'zsh'
 	'pkgfile'
+	'ttf-meslo-nerd-font-powerlevel10k'
 	'ttf-nerd-fonts-symbols-with-biglinux'
 	'zsh-theme-powerlevel10k')
 source=("git+${url}.git") 
@@ -25,7 +26,6 @@ backup=(root/.zshrc)
 package() {
 	cd ${srcdir}
 	install -D -m644 $srcdir/$pkgname/.zshrc ${pkgdir}/etc/skel/.zshrc
-	install -D -m644 $srcdir/$pkgname/MesloLGSBiglinux-Regular.ttf ${pkgdir}/usr/share/fonts/TTF/MesloLGSBiglinux-Regular.ttf
 	install -D -m644 $srcdir/$pkgname/biglinux-zsh-config ${pkgdir}/usr/share/zsh/biglinux-zsh-config
 	install -D -m644 $srcdir/$pkgname/biglinux-zsh-prompt ${pkgdir}/usr/share/zsh/biglinux-zsh-prompt
 	install -D -m644 $srcdir/$pkgname/zsh-maia-prompt ${pkgdir}/usr/share/zsh/zsh-maia-prompt
